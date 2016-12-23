@@ -492,12 +492,14 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
+  // precompute the 5 possible numbers that determine the phase quantity
   var phases = [];
   var phaseMath = document.body.scrollTop / 1250;
   for(var i = 0; i < 5; i++) {
     phases.push(((Math.sin(phaseMath + i)) * 100) + 800);
   }
 
+  // iterate through mover class items and transform css
   var items = document.getElementsByClassName('mover');
   for (var i = 0; i < items.length; i++) {
     items[i].style.transform = 'translateX(' + (phases[i % 5] - items[i].basicLeft) + 'px)';
