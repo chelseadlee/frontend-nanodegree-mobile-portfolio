@@ -18,9 +18,9 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     expand: true,
-                    src: ['*.{gif,jpg,png}'],
-                    cwd:'images_src/',
-                    dest: 'resized_images/'
+                    src: ['src/images_src/*.{gif,jpg,png}'],
+                    dest: 'src/resized_images/',
+                    flatten: true
                 }]
             }
         },
@@ -32,20 +32,27 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: 'resized_images/',
-                    src: ['**/*.{png,jpg,gif}'],
-                    dest: 'img/'
+                    src: ['dist/img/*.jpg'],
+                    ext: '.min.jpg'
+                },{
+                    expand: true,
+                    src: ['dist/img/*.png'],
+                    ext: '.min.png'
+                },{
+                    expand: true,
+                    src: ['dist/img/*.gif'],
+                    ext: '.min.gif'
                 }]
             }
         },
 
-        /* Clear out the images directory if it exists */
+        /* Clear out the directory if it exists */
         clean: {
             dev: {
-                src: ['img', 'resized_images'],
+                src: ['dist/img', 'src/resized_images'],
             },
             css: {
-                src: ['release']
+                src: ['dist/css']
             }
         },
 
@@ -53,12 +60,12 @@ module.exports = function(grunt) {
         mkdir: {
             img: {
                 options: {
-                    create: ['img']
+                    create: ['dist/img']
                 }
             },
             css: {
                 options: {
-                    create: ['release/css']
+                    create: ['dist/css']
                 }
             }
         },
@@ -68,15 +75,17 @@ module.exports = function(grunt) {
           img: {
             files: [{
               expand: true,
-              src: 'images_src/fixed/*.{gif,jpg,png}',
-              dest: 'img/'
+              src: 'src/resized_images/*.{gif,jpg,png}',
+              dest: 'dist/img',
+              flatten: true
             }]
           },
           css: {
             files: [{
                 expand: true,
-                src: ['**/*.css', '!**/*.min.css', '!node_modules/**/*.css'],
-                dest: 'release/css'
+                src: ['src/css/*.css', '!**/*.min.css'],
+                dest: 'dist/css',
+                flatten: true
             }]
           }
         },
@@ -86,9 +95,8 @@ module.exports = function(grunt) {
             target: {
                 files: [{
                     expand: true,
-                    src: ['**/*.css', '!**/*.min.css', '!node_modules/**/*.css', '!release/css/**/*.css'],
+                    src: ['dist/css/*.css', '!dist/css/*.min.css'],
                     // src: ['css/*.css', 'views/css/*.css', '!css/*.min.css', '!views/css/*.min.css'],
-                    dest: 'release/css',
                     ext: '.min.css'
                 }]
             }
@@ -101,5 +109,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-mkdir');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.registerTask('default', ['clean', 'mkdir', 'copy', 'responsive_images', 'imagemin', 'cssmin']);
+    grunt.registerTask('default', ['clean', 'mkdir', 'responsive_images', 'copy', 'imagemin', 'cssmin']);
 };
