@@ -3,6 +3,10 @@
 1. download project directory
 2. run npm install to install required grunt dependencies
 
+### To Run:
+1. clone directory and open up dist/index.html in your browser.
+
+### Optimization and Performance Related Changes
 #### Part 1: Optimize PageSpeed Insights score for index.html
 
 1. index.html:
@@ -29,7 +33,7 @@
     - added transform, will-change, and backface-visibility properties to CSS in pizza.html
 
 
-### Customization with Bootstrap
+### Built with Bootstrap
 The portfolio was built on Twitter's <a href="http://getbootstrap.com/">Bootstrap</a> framework. All custom styles are in `dist/css/portfolio.css` in the portfolio repo.
 
 * <a href="http://getbootstrap.com/css/">Bootstrap's CSS Classes</a>
