@@ -1,9 +1,9 @@
 ## Website Performance Optimization portfolio project
-####To Make Changes to project:
+### To Make Changes to project:
 1. download project directory
 2. run npm install to install required grunt dependencies
 
-####Part 1: Optimize PageSpeed Insights score for index.html
+#### Part 1: Optimize PageSpeed Insights score for index.html
 
 1. index.html:
     - loaded google analytics script asynchronously
@@ -16,7 +16,7 @@
     - minified CSS using Grunt task (grunt-contrib-cssmin)
     - inlined CSS on pizza.html and index.html
 
-####Part 2: Optimize Frames per Second in pizza.html
+#### Part 2: Optimize Frames per Second in pizza.html
 1. main.js:
     - eliminated forced synchonous layout on resizePizzas function
     - changed pizza widths to percentages in changePizzaSizes function
